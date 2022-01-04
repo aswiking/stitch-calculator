@@ -1,0 +1,33 @@
+html {
+  box-sizing: border-box;
+  background-color: #fdfaf1;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+  list-style: none;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+}
+
+.instructions-and-abbreviations {
+  border: 0.1rem solid black;
+  margin: 1rem auto;
+  width: 20rem;
+}
+
+.input-div {
+  margin: 1rem;
+}

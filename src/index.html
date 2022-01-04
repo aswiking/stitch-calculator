@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <title>Stitch Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Create instructions for how to increase or decrease your stitch count across a row of knitting"
+    />
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./images/favicons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./images/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
+  <body>
+    <header>
+      <h1>Stitch Calculator</h1>
+    </header>
+    <main>
+        <div class="instructions-and-abbreviations">
+            <div class="instructions">
+                <h3>Instructions</h3>
+                <p>Placeholder</p>
+            </div>
+            <div class="abbreviations">
+                <h4>Abbreviations</h4>
+                <ul>
+                    <li>k = Knit.</li>
+                    <li>m1 = Make one.</li>
+                </ul>
+            </div>
+        </div>
+      <form>
+        <div class="toggle">
+          <button>Increase</button>
+          <button>Decrease</button>
+        </div>
+        <div class="input-div">
+          <label for="current-number">Current number of stitches</label>
+          <input type="number" id="current-number" name="current-number" />
+        </div>
+        <div class="input-div">
+          <label for="increase-number">Number of stitches to increase</label>
+          <input type="number" id="increase-number" name="increase-number" />
+        </div>
+        <button>Calculate</button>
+      </form>
+    </main>
+  </body>
+</html>
