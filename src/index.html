@@ -116,7 +116,47 @@
             smallRep * smallRepRepeats + bigRep * bigRepRepeats
           );
 
+          /* Distribute sts */
 
+
+          if (smallRepRepeats > bigRepRepeats) {
+            const standardSpacing = Math.floor(smallRepRepeats / bigRepRepeats);
+            const leftOver = smallRepRepeats - (bigRepRepeats * standardSpacing);
+            console.log("left over", leftOver);
+
+            const edgeSts = standardSpacing + leftOver;
+
+            let firstPortion = Math.floor(edgeSts/2);
+            let lastPortion;
+
+            if ( (edgeSts % 2) !== 0 ) {
+                lastPortion = firstPortion + (edgeSts % 2);
+            } else {
+                lastPortion = firstPortion;
+            }
+
+            console.log("first and last portions", firstPortion, lastPortion)
+
+
+          } else if (bigRepRepeats > smallRepRepeats) {
+            const standardSpacing = Math.floor(bigRepRepeats / smallRepRepeats);
+            const leftOver = bigRepRepeats - (smallRepRepeats * standardSpacing);
+            console.log("left over", leftOver);
+
+            const edgeSts = standardSpacing + leftOver;
+
+            let firstPortion = Math.floor(edgeSts/2);
+            let lastPortion;
+
+            if ( (edgeSts % 2) !== 0 ) {
+                lastPortion = firstPortion + (edgeSts % 2);
+            } else {
+                lastPortion = firstPortion;
+            };
+
+            console.log("first and last portions", firstPortion, lastPortion)
+
+          } else if ( bigRepRepeats === smallRepRepeats ) {
 
           }
         });
