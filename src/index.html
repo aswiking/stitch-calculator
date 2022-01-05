@@ -29,7 +29,7 @@
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
     <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#e05447" />
   </head>
   <body>
     <header>
@@ -51,8 +51,10 @@
         </div>
       <form>
         <div class="toggle">
-          <button>Increase</button>
-          <button>Decrease</button>
+            <label for="increase-radio">Increase</label>
+            <input type="radio" id="increase-radio" name="radio" value="increase" checked/>
+            <label for="decrease-radio">Decrease</label>
+            <input type="radio" id="decrease-radio" name="radio" value="decrease"/>
         </div>
         <div class="input-div">
           <label for="current-number">Current number of stitches</label>
@@ -65,5 +67,20 @@
         <button>Calculate</button>
       </form>
     </main>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+$(document).ready(function() {
+    $("form").on('submit', function(event) {
+
+
+    })
+})
+
+
+    </script>
+
+
   </body>
 </html>
