@@ -8,7 +8,7 @@
       name="description"
       content="Create instructions for how to increase or decrease your stitch count across a row of knitting"
     />
-    <link rel="stylesheet" type="text/css" href="./index.css">
+    <link rel="stylesheet" type="text/css" href="./index.css" />
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -36,25 +36,36 @@
       <h1>Stitch Calculator</h1>
     </header>
     <main>
-        <div class="instructions-and-abbreviations">
-            <div class="instructions">
-                <h3>Instructions</h3>
-                <p>Placeholder</p>
-            </div>
-            <div class="abbreviations">
-                <h4>Abbreviations</h4>
-                <ul>
-                    <li>k = Knit.</li>
-                    <li>m1 = Make one.</li>
-                </ul>
-            </div>
+      <div class="instructions-and-abbreviations">
+        <div class="instructions">
+          <h3>Instructions</h3>
+          <p>Placeholder</p>
         </div>
+        <div class="abbreviations">
+          <h4>Abbreviations</h4>
+          <ul>
+            <li>k = Knit.</li>
+            <li>m1 = Make one.</li>
+          </ul>
+        </div>
+      </div>
       <form>
         <div class="toggle">
-            <label for="increase-radio">Increase</label>
-            <input type="radio" id="increase-radio" name="radio" value="increase" checked/>
-            <label for="decrease-radio">Decrease</label>
-            <input type="radio" id="decrease-radio" name="radio" value="decrease"/>
+          <label for="increase-radio">Increase</label>
+          <input
+            type="radio"
+            id="increase-radio"
+            name="radio"
+            value="increase"
+            checked
+          />
+          <label for="decrease-radio">Decrease</label>
+          <input
+            type="radio"
+            id="decrease-radio"
+            name="radio"
+            value="decrease"
+          />
         </div>
         <div class="input-div">
           <label for="current-number">Current number of stitches</label>
@@ -70,17 +81,46 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
+      $(document).ready(function () {
+        $("form").on("submit", function (event) {
+          event.preventDefault();
 
-$(document).ready(function() {
-    $("form").on('submit', function(event) {
+          console.log(event.target["current-number"].value);
+          const selected = $("input[type='radio'][name='radio']:checked").val();
+          console.log(selected);
+
+          const currentSts = event.target["current-number"].value;
+          const increaseSts = event.target["increase-number"].value;
+
+          const portions = Number(increaseSts) + 1;
+
+          const smallRep = Math.floor(currentSts / portions);
+
+          const bigRep = smallRep + 1;
+
+          const bigRepRepeats = currentSts - smallRep * portions;
+
+          const smallRepRepeats = portions - bigRepRepeats;
+
+          console.log(
+            currentSts,
+            increaseSts,
+            portions,
+            smallRep,
+            bigRep,
+            bigRepRepeats,
+            smallRepRepeats
+          );
+          console.log(
+            "total sts are",
+            smallRep * smallRepRepeats + bigRep * bigRepRepeats
+          );
 
 
-    })
-})
 
-
+          }
+        });
+      });
     </script>
-
-
   </body>
 </html>
