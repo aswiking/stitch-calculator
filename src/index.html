@@ -36,10 +36,10 @@
       <h1>Stitch Calculator</h1>
     </header>
     <main>
-      <div class="instructions-and-abbreviations">
+      <div class="instructions-and-abbreviations" style="display: none;" >
         <div class="instructions">
-          <h3>Instructions</h3>
-          <p>Placeholder</p>
+          <h3 id="instructions-header">Instructions</h3>
+          <ul id="instructions-content"></ul>
         </div>
         <div class="abbreviations">
           <h4>Abbreviations</h4>
@@ -91,21 +91,25 @@
           const selected = $("input[type='radio'][name='radio']:checked").val();
           console.log(selected);
 
-          const currentSts = event.target["current-number"].value;
-          const increaseSts = event.target["increase-number"].value;
+          const currentSts = Number(event.target["current-number"].value);
+          const increaseSts = Number(event.target["increase-number"].value);
 
           /* guard statements*/
+
+          
 
           if ( (currentSts < 4) || (currentSts > 1000) ) {
             $("#validation-message-1").show()
             return
           } else if ( currentSts < increaseSts ) {
+              console.log(currentSts, increaseSts)
             $("#validation-message-2").show()
               return
             };
 
             $(".validation-message").hide(); // re-hides validation messages if reached
 
+            // fringe case of currentSts one less than increaseSts
 
           const portions = Number(increaseSts) + 1;
 
@@ -184,6 +188,13 @@
           console.log(startStr);
           console.log(centreRepsStr);
           console.log(endStr)
+
+
+          $("#instructions-content").empty(); // makes sure ul is empty before adding lis
+          $("#instructions-content").append(`<li>${startStr}</li>`).append(`<li>${centreRepsStr}</li>`).append(`<li>${endStr}</li>`);
+          $(".instructions-and-abbreviations").slideDown();
+
+
 
         });
       });
