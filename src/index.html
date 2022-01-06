@@ -44,8 +44,8 @@
         <div class="abbreviations">
           <h4>Abbreviations</h4>
           <ul>
-            <li>k = Knit.</li>
-            <li>m1 = Make one.</li>
+            <li>K = Knit.</li>
+            <li>M1 = Make one.</li>
           </ul>
         </div>
       </div>
@@ -176,14 +176,16 @@
 
           let centreRepsStr = `K${altRep}, M1`;
           
-          for ( let i = 0 ; i < stdRep ; i++ ) {
+          for ( let i = 0 ; i < standardSpacing ; i++ ) {
             centreRepsStr += ', ';
             centreRepsStr += stdRepStr;
           };
 
-          centreRepsStr = `* ${centreRepsStr} * repeat ${standardSpacing} times`;
+          const centreRepeatTimes = (portions - firstPortion - lastPortion - 1) / (standardSpacing + 1)
 
-          const endStr = `* K${stdRep}, M1 *, repeat ${lastPortion} times`;
+          centreRepsStr = `* ${centreRepsStr} * repeat ${centreRepeatTimes} times`;
+
+          const endStr = `K${altRep}, M1, * K${stdRep}, M1 *, repeat ${lastPortion -1} times, K${stdRep}`;
 
           console.log(startStr);
           console.log(centreRepsStr);
@@ -193,6 +195,14 @@
           $("#instructions-content").empty(); // makes sure ul is empty before adding lis
           $("#instructions-content").append(`<li>${startStr}</li>`).append(`<li>${centreRepsStr}</li>`).append(`<li>${endStr}</li>`);
           $(".instructions-and-abbreviations").slideDown();
+
+          const starterCount = stdRep * firstPortion;
+          const centreCount = (altRep + (stdRep * standardSpacing)) *centreRepeatTimes;
+          const endCount = (stdRep * lastPortion) + altRep;
+
+          console.log(starterCount, centreCount, endCount)
+
+          console.log('total stitches from instruction data', (starterCount + centreCount + endCount))
 
 
 
