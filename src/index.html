@@ -67,13 +67,15 @@
             value="decrease"
           />
         </div>
-        <div class="input-div">
+        <div class="input-div" id="input-div-1" >
           <label for="current-number">Current number of stitches</label>
           <input type="number" id="current-number" name="current-number" />
+          <p class="validation-message" id='validation-message-1' style="display: none;" >The number of current stitches has to be between 4 and 1000</p>
         </div>
-        <div class="input-div">
+        <div class="input-div" id="input-div-2" >
           <label for="increase-number">Number of stitches to increase</label>
           <input type="number" id="increase-number" name="increase-number" />
+          <p class="validation-message" id='validation-message-2' style="display: none;" >This calculator does not support increasing more stitches than you currently have on your needles. Please enter a lower number of stitches to increase.</p>
         </div>
         <button>Calculate</button>
       </form>
@@ -94,18 +96,15 @@
 
           /* guard statements*/
 
-          let validationMessage;
-
           if ( (currentSts < 4) || (currentSts > 1000) ) {
-            validationMessage = 'The number of current stitches has to be between 4 and 1000';
-            console.log(validationMessage);
+            $("#validation-message-1").show()
             return
           } else if ( currentSts < increaseSts ) {
-              validationMessage = 'This calculator does not support increasing more stitches than you currently have on your needles. Please enter a lower number of stitches to increase.'
-              console.log(validationMessage);
+            $("#validation-message-2").show()
               return
             };
 
+            $(".validation-message").hide(); // re-hides validation messages if reached
 
 
           const portions = Number(increaseSts) + 1;
@@ -162,7 +161,6 @@
           );
 
           const stdRepStr = `K${stdRep}, M1`;
-
 
           let startStr;
 
