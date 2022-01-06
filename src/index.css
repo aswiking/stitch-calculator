@@ -1,6 +1,16 @@
+:root {
+    --main-color: #0c413d;
+    --secondary-color: #e05447;
+    --secondary-color-pale: #FFA69E;
+    --main-bg-color: #fdfaf1;
+    --main-font: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 html {
   box-sizing: border-box;
-  background-color: #fdfaf1;
+  background-color: var(--main-bg-color);
+  color: var(--main-color);
+  font-family: var(--main-font)
 }
 
 *,
@@ -18,16 +28,39 @@ li {
   padding: 0;
 }
 
+button {
+    background-color: var(--secondary-color);
+    color: var(--main-bg-color);
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+label {
+    font-weight: bold;
+}
+
 body {
   text-align: center;
 }
 
 .instructions-and-abbreviations {
-  border: 0.1rem solid black;
+  background-color: var(--secondary-color-pale);
+  padding: 1rem;
   margin: 1rem auto;
   width: 20rem;
+  border-radius: 0.5rem;
 }
 
 .input-div {
   margin: 1rem;
+}
+
+.input-div input {
+    width: 3rem;
+    display: block;
+    margin: 0.5rem auto;
+}
+
+.validation-message {
+    color: var(--secondary-color)
 }
