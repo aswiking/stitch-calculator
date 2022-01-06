@@ -118,47 +118,49 @@
 
           /* Distribute sts */
 
+          let standardSpacing;
+          let leftOver;
+          let edgeRepeats;
+          let firstPortion;
+          let lastPortion;
 
           if (smallRepRepeats > bigRepRepeats) {
-            const standardSpacing = Math.floor(smallRepRepeats / bigRepRepeats);
-            const leftOver = smallRepRepeats - (bigRepRepeats * standardSpacing);
+            standardSpacing = Math.floor(smallRepRepeats / bigRepRepeats);
+            leftOver = smallRepRepeats - bigRepRepeats * standardSpacing;
             console.log("left over", leftOver);
 
-            const edgeSts = standardSpacing + leftOver;
+            edgeRepeats = standardSpacing + leftOver; // number of repeats of the smallRep left at both ends combined
 
-            let firstPortion = Math.floor(edgeSts/2);
-            let lastPortion;
+            firstPortion = Math.floor(edgeRepeats / 2);
 
-            if ( (edgeSts % 2) !== 0 ) {
-                lastPortion = firstPortion + (edgeSts % 2);
+            if (edgeRepeats % 2 !== 0) {
+              lastPortion = firstPortion + (edgeRepeats % 2);
             } else {
-                lastPortion = firstPortion;
+              lastPortion = firstPortion;
             }
-
-            console.log("first and last portions", firstPortion, lastPortion)
-
-
           } else if (bigRepRepeats > smallRepRepeats) {
-            const standardSpacing = Math.floor(bigRepRepeats / smallRepRepeats);
-            const leftOver = bigRepRepeats - (smallRepRepeats * standardSpacing);
-            console.log("left over", leftOver);
+            standardSpacing = Math.floor(bigRepRepeats / smallRepRepeats);
+            leftOver = bigRepRepeats - smallRepRepeats * standardSpacing;
 
-            const edgeSts = standardSpacing + leftOver;
+            edgeRepeats = standardSpacing + leftOver; // number of repeats of the bigRep left at both ends combined
 
-            let firstPortion = Math.floor(edgeSts/2);
-            let lastPortion;
+            firstPortion = Math.floor(edgeRepeats / 2);
 
-            if ( (edgeSts % 2) !== 0 ) {
-                lastPortion = firstPortion + (edgeSts % 2);
+            if (edgeRepeats % 2 !== 0) {
+              lastPortion = firstPortion + (edgeRepeats % 2);
             } else {
-                lastPortion = firstPortion;
-            };
+              lastPortion = firstPortion;
+            }
+          } else if (bigRepRepeats === smallRepRepeats) {
+            standardSpacing = 1;
+            leftOver = 0;
 
-            console.log("first and last portions", firstPortion, lastPortion)
-
-          } else if ( bigRepRepeats === smallRepRepeats ) {
-
+            firstPortion = 1;
+            lastPortion = 1;
           }
+          console.log("left over", leftOver);
+
+          console.log("first and last portions", firstPortion, lastPortion);
         });
       });
     </script>
