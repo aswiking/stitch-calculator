@@ -94,75 +94,63 @@
 
           const portions = Number(increaseSts) + 1;
 
-          const smallRep = Math.floor(currentSts / portions);
+          let stdRep = Math.floor(currentSts / portions);
 
-          const bigRep = smallRep + 1;
+          let altRep = stdRep + 1;
 
-          const bigRepRepeats = currentSts - smallRep * portions;
+          let altRepRepeats = currentSts - stdRep * portions;
 
-          const smallRepRepeats = portions - bigRepRepeats;
-
-          console.log(
-            currentSts,
-            increaseSts,
-            portions,
-            smallRep,
-            bigRep,
-            bigRepRepeats,
-            smallRepRepeats
-          );
-          console.log(
-            "total sts are",
-            smallRep * smallRepRepeats + bigRep * bigRepRepeats
-          );
+          let stdRepRepeats = portions - altRepRepeats;
 
           /* Distribute sts */
 
-          let standardSpacing;
-          let leftOver;
-          let edgeRepeats;
-          let firstPortion;
-          let lastPortion;
+          if (stdRepRepeats < altRepRepeats) { // making sure the stdRep is always the one there's more of
+            [stdRep, altRep] = [altRep, stdRep];
+            [stdRepRepeats, altRepRepeats] = [ altRepRepeats, stdRepRepeats ];
+          };
 
-          if (smallRepRepeats > bigRepRepeats) {
-            standardSpacing = Math.floor(smallRepRepeats / bigRepRepeats);
-            leftOver = smallRepRepeats - bigRepRepeats * standardSpacing;
-            console.log("left over", leftOver);
-
-            edgeRepeats = standardSpacing + leftOver; // number of repeats of the smallRep left at both ends combined
-
-            firstPortion = Math.floor(edgeRepeats / 2);
-
-            if (edgeRepeats % 2 !== 0) {
-              lastPortion = firstPortion + (edgeRepeats % 2);
-            } else {
-              lastPortion = firstPortion;
-            }
-          } else if (bigRepRepeats > smallRepRepeats) {
-            standardSpacing = Math.floor(bigRepRepeats / smallRepRepeats);
-            leftOver = bigRepRepeats - smallRepRepeats * standardSpacing;
-
-            edgeRepeats = standardSpacing + leftOver; // number of repeats of the bigRep left at both ends combined
-
-            firstPortion = Math.floor(edgeRepeats / 2);
-
-            if (edgeRepeats % 2 !== 0) {
-              lastPortion = firstPortion + (edgeRepeats % 2);
-            } else {
-              lastPortion = firstPortion;
-            }
-          } else if (bigRepRepeats === smallRepRepeats) {
-            standardSpacing = 1;
-            leftOver = 0;
-
-            firstPortion = 1;
-            lastPortion = 1;
-          }
+          const standardSpacing = Math.floor(
+            stdRepRepeats / altRepRepeats
+          );
+          const leftOver = // might need to adjust what happens here if equal repeats of reg and alt
+            stdRepRepeats - altRepRepeats * standardSpacing;
           console.log("left over", leftOver);
 
-          console.log("first and last portions", firstPortion, lastPortion);
+          const edgeRepeats = standardSpacing + leftOver; // number of repeats of the stdRep left at both ends combined
+
+          const firstPortion = Math.floor(edgeRepeats / 2);
+
+          let lastPortion;
+
+          if (edgeRepeats % 2 !== 0) {
+            lastPortion = firstPortion + (edgeRepeats % 2);
+          } else {
+            lastPortion = firstPortion;
+          }
+
+          console.log("left over", leftOver);
+          console.log("first and last portions", firstPortion, lastPortion); 
+
+          /* Compile into string */
+
+          console.log(
+            stdRep,
+            altRep,
+            altRepRepeats,
+            stdRepRepeats
+          );
+          console.log(
+            "total sts are",
+            stdRep * stdRepRepeats +
+              altRep * altRepRepeats
+          );
+
+          const stdRepStr = `K${stdRep}, M1`;
+          const altRepStr = `K${altRep}, M1`;
         });
       });
+
+      //write guard statements
     </script>
   </body>
 </html>
