@@ -92,6 +92,22 @@
           const currentSts = event.target["current-number"].value;
           const increaseSts = event.target["increase-number"].value;
 
+          /* guard statements*/
+
+          let validationMessage;
+
+          if ( (currentSts < 4) || (currentSts > 1000) ) {
+            validationMessage = 'The number of current stitches has to be between 4 and 1000';
+            console.log(validationMessage);
+            return
+          } else if ( currentSts < increaseSts ) {
+              validationMessage = 'This calculator does not support increasing more stitches than you currently have on your needles. Please enter a lower number of stitches to increase.'
+              console.log(validationMessage);
+              return
+            };
+
+
+
           const portions = Number(increaseSts) + 1;
 
           let stdRep = Math.floor(currentSts / portions);
@@ -146,11 +162,34 @@
           );
 
           const stdRepStr = `K${stdRep}, M1`;
-          const altRepStr = `K${altRep}, M1`;
+
+
+          let startStr;
+
+          if ( firstPortion === 0 ) {
+              startStr = '';
+          } else {
+            startStr = `* K${stdRep}, M1 *, repeat ${firstPortion} times`;
+          };
+
+          let centreRepsStr = `K${altRep}, M1`;
+          
+          for ( let i = 0 ; i < stdRep ; i++ ) {
+            centreRepsStr += ', ';
+            centreRepsStr += stdRepStr;
+          };
+
+          centreRepsStr = `* ${centreRepsStr} * repeat ${standardSpacing} times`;
+
+          const endStr = `* K${stdRep}, M1 *, repeat ${lastPortion} times`;
+
+          console.log(startStr);
+          console.log(centreRepsStr);
+          console.log(endStr)
+
         });
       });
 
-      //write guard statements
     </script>
   </body>
 </html>
