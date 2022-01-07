@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "start": "live-server",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
+  },
+  "type": "module",
+  "jest": {
+    "setupFiles": [
+      "./src/setup-jest.js"
+    ],
+    "testEnvironment": "jsdom",
+    "globals": {
+      "window": {}
+    }
+  },
+  "devDependencies": {
+    "jest": "^27.4.7",
+    "live-server": "^1.2.1"
+  }
+}
